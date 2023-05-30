@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Интернет-магазин</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Добавляем это свойство для центрирования контейнера по горизонтали */
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px; /* Добавляем отступ снизу для разделов h1 и h2 */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Убираем отступы по умолчанию для списка */
+}
+
+li {
+    margin-bottom: 10px;
+    display: flex; /* Добавляем свойство для выравнивания элементов по горизонтали */
+    align-items: center; /* Выравниваем элементы по вертикали внутри li */
+}
+
+form {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Добавляем ширину 100% для формы */
+    justify-content: space-between; /* Распределяем элементы формы равномерно */
+}
+
+input[type="number"] {
+    width: 50px;
+    margin-left: 10px; /* Добавляем отступ слева для поля ввода числа */
+}
+
+input[type="submit"] {
+    margin-left: 10px;
+    background-color: green;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: darkgreen;
+}
+.Bucket{
+    margin-left: 10px;
+    background-color: green;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    }
+.Bucket: hover {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: darkgreen;
+}
+
+
+
+
+</style>
+    </head>
+<body>
+    <div class="container">
+        <h1>Интернет-магазин</h1>
+        <h2>Товары</h2>
+        <ul>
+            {% for product in products %}
+            <li>
+                <form action="{{ url_for('add_to_cart') }}" method="post">
+                    <img src="path_to_product_image" alt="Product Image" width="50" height="50">
+                    {{ product.name }} - Цена: {{ product.price }}
+                    <input type="hidden" name="product_name" value="{{ product.name }}">
+                    <input type="number" name="quantity" min="1" value="1">
+                    <input type="submit" value="Добавить в корзину">
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        <h2><a class="Bucket" href="{{ url_for('cart') }}">Корзина</a></h2>
+    </div>
+</body>
+</html>

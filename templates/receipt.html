@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Чек</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        ul {
+            margin-top: 10px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Receipt</h2>
+    <p>Name: {{ checkout.first_name }} {{ checkout.last_name }}</p>
+    <p>Address: {{ checkout.address }}</p>
+
+    <h3>Ordered Items:</h3>
+    <ul>
+    {% for cart_item in checkout.cart_items %}
+        <li>{{ cart_item.product.name }} - {{ cart_item.quantity }} pcs</li>
+    {% endfor %}
+    </ul>
+
+    <p>Total Price: ${{ checkout.total_price }}</p>
+</body>
+</html>
